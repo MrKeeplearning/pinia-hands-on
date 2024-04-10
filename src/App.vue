@@ -2,20 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.js'
 
-const authStore = useAuthStore()
-
-function logout() {
-  authStore.$patch((state) => {
-    (state.isAuthenticated = false), (state.user = {})
-  });
-}
-
-function login() {
-  authStore.$patch((state) => {
-    (state.isAuthenticated = true), (state.user = {name: "Jason", email: "jason@gmail.com"})
-  });
-}
-
+const authStore = useAuthStore();
 </script>
 
 <template>
@@ -24,8 +11,8 @@ function login() {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <button @click="logout" v-if="authStore.isAuthenticated">Logout</button>
-        <button @click="login" v-else>Login</button>
+        <button @click="authStore.logout" v-if="authStore.isAuthenticated">Logout</button>
+        <button @click="authStore.login" v-else>Login</button>
       </nav>
     </div>
   </header>
