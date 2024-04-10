@@ -6,7 +6,6 @@ import Counter from '@/components/CounterComponent.vue';
 <template>
   <main>
     Home page
-    {{ store.count }}
     <Counter/>
   </main>
 </template>
