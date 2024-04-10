@@ -6,9 +6,16 @@ const authStore = useAuthStore()
 
 function logout() {
   authStore.$patch((state) => {
-    (state.isAuthenticated = false), (state.user = {});
+    (state.isAuthenticated = false), (state.user = {})
   });
 }
+
+function login() {
+  authStore.$patch((state) => {
+    (state.isAuthenticated = true), (state.user = {name: "Jason", email: "jason@gmail.com"})
+  });
+}
+
 </script>
 
 <template>
@@ -17,7 +24,8 @@ function logout() {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <button @click="logout">Logout</button>
+        <button @click="logout" v-if="authStore.isAuthenticated">Logout</button>
+        <button @click="login" v-else>Login</button>
       </nav>
     </div>
   </header>
